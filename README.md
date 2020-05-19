@@ -1,16 +1,21 @@
-# gonav
-A [Source Engine](https://en.wikipedia.org/wiki/Source_(game_engine)) bot Nav file parser written in Go. This was written for CS:GO but will likely work with little or no modification for other Source titles. The specifics of the .nav format were reverse engineered using the information on [Valve's wiki](https://developer.valvesoftware.com/wiki/NAV) as a starting point. For more information on Source's Navigation Meshes see Valve's wiki: https://developer.valvesoftware.com/wiki/Navigation_Meshes
+# csgonavparse
 
-# Usage
-See the `_examples` folder for examples of how to use this library. The basics, however, are pretty straightforward. Create a parser and pass in any `Reader` that contains the binary .nav data, then call the `Parse()` method. This will output a parsed `NavMesh` object which you can perform operations on. Here's a terse example:
+This is a clone of the [gonav](https://github.com/mrazza/gonav) repository, with the appropriate changes to fix bugs that hampered use in Go versions >= 1.14. The original repository description is
+
+> A [Source Engine](https://en.wikipedia.org/wiki/Source_(game_engine)) bot Nav file parser written in Go. This was written for CS:GO but will likely work with little or no modification for other Source titles. The specifics of the .nav format were reverse engineered using the information on [Valve's wiki](https://developer.valvesoftware.com/wiki/NAV) as a starting point. For more information on Source's Navigation Meshes see Valve's wiki: https://developer.valvesoftware.com/wiki/Navigation_Meshes
+
+# Parsing `.nav` files
+First, create a parser and pass in any `Reader` that contains the binary `.nav` file. This file game can be found in CSGO's game files. Then, call the `Parse()` method. Doing so will output a parsed `NavMesh` object which you can perform operations on. See an example below:
 
 ```
 f, _ := os.Open("de_dust2.nav") // Open the file
-parser := gonav.Parser{Reader: f}
+parser := gonav.Parser{Reader: f} // Create the parser
 mesh, _ := parser.Parse() // Parse the file
 area := mesh.QuadTreeAreas.FindAreaByPoint(gonav.Vector3{10, 10, 10}, true) // Find the nav area that contains the world point {10, 10} with a Z-value closest to 10
 fmt.Println(area)
 ```
+
+Further examples are available in the `examples` directory.
 
 # Path Finding
 This library also supports path finding across nav meshes via an A* implementation.
@@ -58,4 +63,7 @@ AreaID: 3502 [BombsiteB] @ {{550 -900 -769.49255}, {850 -725 -767.96875}}
 ```
 
 # License
+*The text below is the LICENSE text in the original repository as of May 18, 2020.*
+
 This source is licensed under the GNU AFFERO GENERAL PUBLIC LICENSE. If this license is not acceptable for your project, let me know. Additionally, more feature-rich versions of this library exist, written in C# and C++, and can be licensed upon request.
+
