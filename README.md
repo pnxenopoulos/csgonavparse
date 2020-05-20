@@ -4,6 +4,8 @@ This is a clone of the [gonav](https://github.com/mrazza/gonav) repository, with
 
 > A [Source Engine](https://en.wikipedia.org/wiki/Source_(game_engine)) bot Nav file parser written in Go. This was written for CS:GO but will likely work with little or no modification for other Source titles. The specifics of the .nav format were reverse engineered using the information on [Valve's wiki](https://developer.valvesoftware.com/wiki/NAV) as a starting point. For more information on Source's Navigation Meshes see Valve's wiki: https://developer.valvesoftware.com/wiki/Navigation_Meshes
 
+We cloned this repository and made the changes as it was necessary for the [csgo](https://github.com/pnxenopoulos/csgo) data parsing package for Python.
+
 # Parsing `.nav` files
 First, create a parser and pass in any `Reader` that contains the binary `.nav` file. This file game can be found in CSGO's game files. Then, call the `Parse()` method. Doing so will output a parsed `NavMesh` object which you can perform operations on. See an example below:
 
