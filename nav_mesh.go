@@ -64,6 +64,17 @@ func (mesh *NavMesh) GetPlaceByName(name string) *NavPlace {
 	return nil
 }
 
+// Returns area given an id
+func (mesh *NavMesh) GetAreaById(id uint32) *NavArea {
+	for _, curr := range mesh.Areas {
+		if curr.ID == id {
+			return curr
+		}
+	}
+
+	return nil
+}
+
 // Finds the area nearest to this point
 func (mesh *NavMesh) GetNearestArea(point Vector3, allowBelow bool) *NavArea {
 	bestDistance := float32(math.MaxFloat32)
