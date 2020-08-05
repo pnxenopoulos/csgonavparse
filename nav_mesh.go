@@ -90,15 +90,13 @@ func (mesh *NavMesh) GetNearestArea(point Vector3, allowBelow bool) *NavArea {
 		} else {
 			center := curr.GetCenter()
 
-			if !allowBelow && center.Z > point.Z {
-				continue
-			}
-
-			center.Sub(point)
-			currDistance := center.LengthSquared()
-			if bestDistance > currDistance {
-				bestDistance = currDistance
-				bestArea = curr
+			if allowBelow {
+				center.Sub(point)
+				currDistance := center.LengthSquared()
+				if bestDistance > currDistance {
+					bestDistance = currDistance
+					bestArea = curr
+				}
 			}
 		}
 	}
